@@ -6,11 +6,11 @@ Elle affiche en temps réel vos métriques essentielles directement sous la zone
 ## ✨ Fonctionnalités
 
 - 🤖 **Modèle actif** : Affiche le modèle en cours d'utilisation (`Gemini 4 Argon`, `Gemini 3.8 Flash`, `Claude Sonnet/Opus`, `GPT-OSS`, etc.).
-- 🧠 **Fenêtre de contexte dynamique** : Affiche le pourcentage et le volume de tokens utilisés (`used/max`) avec un code couleur intuitif :
-  - 🟢 **Vert** : `< 50%` (confortable)
-  - 🟡 **Jaune** : `50% - 79%` (attention à la taille du contexte)
-  - 🔴 **Rouge** : `≥ 80%` (proche de la saturation)
-- 🔋 **Suivi des quotas en direct** : Affiche les jauges restantes pour la session de **5 heures** et le plafond **hebdomadaire (7j)**.
+- 🧠 **Fenêtre de contexte restante** : Affiche le pourcentage restant disponible avec une pastille colorée (🟢 $\ge 50$ %, 🟠 20-49 %, 🔴 $< 20$ %) et les tokens utilisés par rapport au plafond.
+- ⏳ **Suivi dynamique des quotas sur 2e ligne** :
+  - Filtre automatiquement selon le modèle actif (quotas **Gemini** si Gemini est utilisé, quotas **3p** si un modèle tiers est utilisé).
+  - Tri logique par durée : fenêtre courte de **5 heures** en 1er, puis plafond **hebdomadaire**.
+  - Indicateur visuel coloré (🟢/🟠/🔴) pour chaque réservoir.
 
 ## 📋 Prérequis
 
@@ -31,7 +31,7 @@ L'utilitaire `jq` doit être installé pour analyser le flux JSON envoyé par `a
 
    ```bash
    mkdir -p ~/.gemini/antigravity-cli
-   curl -fsSL https://githubusercontent.com<TON-PSEUDO>/<NOM-DU-REPO>/main/statusline.sh -o ~/.gemini/antigravity-cli/statusline.sh
+   curl -fsSL https://raw.githubusercontent.com/nantedev/agy-statusline/main/statusline.sh -o ~/.gemini/antigravity-cli/statusline.sh
    chmod +x ~/.gemini/antigravity-cli/statusline.sh
    ```
 
