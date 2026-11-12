@@ -3,11 +3,10 @@ input=$(cat)
 
 # Extraction du modèle et du contexte
 MODEL=$(echo "$input" | jq -r '.model.id // "N/A"')
-CTX_USED_PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0 | floor')
-CTX_REM_PCT=$(( 100 - CTX_USED_PCT ))
-if [ "$CTX_REM_PCT" -ge 50 ]; then
+CTX_PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0 | floor')
+if [ "$CTX_PCT" -lt 50 ]; then
   CTX_ICON="🟢"
-elif [ "$CTX_REM_PCT" -ge 20 ]; then
+elif [ "$CTX_PCT" -lt 80 ]; then
   CTX_ICON="🟠"
 else
   CTX_ICON="🔴"
@@ -35,5 +34,5 @@ QUOTAS=$(echo "$input" | jq -r '
   ) | join(", ")
 ')
 
-echo "🤖 $MODEL | 🧠 Ctx: $CTX_ICON ${CTX_REM_PCT}% (${CTX_USED}k/${CTX_MAX}k)"
+echo "🤖 $MODEL | 🧠 Ctx: $CTX_ICON ${CTX_PCT}% (${CTX_USED}k/${CTX_MAX}k)"
 echo "⏳ ${QUOTAS:-Quotas N/A}"

@@ -6,7 +6,7 @@ Elle affiche en temps réel vos métriques essentielles directement sous la zone
 ## ✨ Fonctionnalités
 
 - 🤖 **Modèle actif** : Affiche le modèle en cours d'utilisation (`Gemini 4 Argon`, `Gemini 3.8 Flash`, `Claude Sonnet/Opus`, `GPT-OSS`, etc.).
-- 🧠 **Fenêtre de contexte restante** : Affiche le pourcentage restant disponible avec une pastille colorée (🟢 $\ge 50$ %, 🟠 20-49 %, 🔴 $< 20$ %) et les tokens utilisés par rapport au plafond.
+- 🧠 **Fenêtre de contexte** : Affiche le pourcentage consommé avec une pastille colorée (🟢 $< 50$ %, 🟠 50-79 %, 🔴 $\ge 80$ %) et les tokens utilisés par rapport au plafond.
 - ⏳ **Suivi dynamique des quotas sur 2e ligne** :
   - Filtre automatiquement selon le modèle actif (quotas **Gemini** si Gemini est utilisé, quotas **3p** si un modèle tiers est utilisé).
   - Tri logique par durée : fenêtre courte de **5 heures** en 1er, puis plafond **hebdomadaire**.
